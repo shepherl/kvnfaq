@@ -1,23 +1,28 @@
 #!/bin/bash
 
-# 1. Уведомление
+# 1. Уведомление в углу экрана
 osascript -e 'display notification "Начинаю проверку связи..." with title "KVN Тест" sound name "Glass"'
 
 echo "--- Запуск пинга ---"
 
-# 2. Начало блока IF
+# 2. Пингуем Google 3 раза
 if ping -c 3 google.com; then
     echo "--- Успех! ---"
     
-    # 3. Диалог (тут всё в одной строке, проверь кавычки)
-    ANSWER=$(osascript -e 'display dialog "Связь есть! Открыть Google в браузере?" buttons {"Нет", "Да"} default button "Да" with title "Тест завершен"' -e 'button returned of result')
+    # 3. Диалоговое окно
+    ANSWER=$(osascript -e 'display dialog "Связь есть! Открыть Google в Chrome?" buttons {"Нет", "Да"} default button "Да" with title "Тест завершен"' -e 'button returned of result')
 
     if [ "$ANSWER" = "Да" ]; then
-        echo "🌐 Открываю Google..."
-        open "https://www.google.com"
-    fi # Закрыли внутренний IF
+        echo "🌐 Пытаюсь открыть Google в Chrome..."
+        
+        # Пытаемся открыть в Chrome. Если его нет (||), открываем в обычном браузере.
+        open -a "Google Chrome" "https://www.google.com" || open "https://www.google.com"
+    else
+        echo "👌 Ок, браузер не трогаем."
+    fi
 
 else
     echo "--- Ошибка ---"
+    # Окно ошибки, если пинг не прошел
     osascript -e 'display dialog "Нет связи. Проверь интернет! ❌" buttons {"Понял"} default button "Понял" with icon stop'
-fi # Закрыли внешний IF (СКОРЕЕ ВСЕГО, ТУТ БЫЛА ОШИБКА)
+fi
