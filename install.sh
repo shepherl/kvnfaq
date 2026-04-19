@@ -29,7 +29,7 @@ rm "$TMP_ZIP" "$DMG_PATH"
 xattr -cr ~/Desktop/KVN.app
 
 #Вызов окна с результатом
-osascript -e 'display notification "KVN установлен!" with title "Успех"'
+osascript -e 'display dialog "Установка KVN успешно завершена!" with title "Установщик" buttons {"ОК"} default button "ОК" with icon note'
 
 
 
