@@ -11,7 +11,7 @@ curl -L "$APP_URL" -o "$TMP_ZIP"
 unzip -qo "$TMP_ZIP" -d /tmp/ 
 
 # Ищем DMG файл (даже если имя чуть отличается)
-DMG_PATH=$(find /tmp -maxdepth 1 -name "KVN-1.0.dmg" | head -n 1) 
+DMG_PATH=$(find /tmp -maxdepth 1 -name "*.dmg" | head -n 1) 
 
 # Монтируем DMG и получаем путь, куда он примонтировался
 MOUNT_POINT=$(hdiutil attach -nobrowse -noautoopen "$DMG_PATH" | grep -o '/Volumes/.*' | head -n 1) 
