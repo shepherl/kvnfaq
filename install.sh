@@ -29,10 +29,8 @@ rm "$TMP_ZIP" "$DMG_PATH"
 xattr -cr ~/Desktop/KVN.app
 
 #Вызов окна с результатом
-osascript -e 'tell application "Finder"
-    set appPath to (path to desktop folder as string) & "KVN.app"
-    display dialog "Установка KVN успешно завершена!" with title "Установщик" buttons {"ОК"} default button "ОК" with icon file appPath
-end tell'
+# Используем прямой путь к иконке без обращения к Finder
+osascript -e 'display dialog "Установка KVN успешно завершена!" with title "Установщик" buttons {"ОК"} default button "ОК" with icon POSIX file "'"$HOME"'/Desktop/KVN.app"'
 
 
 
