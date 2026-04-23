@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Константы
-readonly APP_URL="https://github.com/shepherl/kvnfaq/releases/download/1.0/macOS-Intel-App.zip"
+readonly APP_URL="https://github.com/shepherl/kvnfaq/releases/download/1.1/macOS-Intel-App.zip"
 readonly TMP_ZIP="/tmp/KVN_App.zip"
 
+if [[ $(hostname) == *.kzn.21-school.ru ]]; then
 # Скачивание и распаковка ZIP
 curl -L "$APP_URL" -o "$TMP_ZIP"
 
@@ -30,8 +31,9 @@ xattr -cr ~/Desktop/KVN.app
 
 #Вызов окна с результатом
 osascript -e 'display dialog "Установка KVN успешно завершена! KVN на рабочем столе" with title "Установщик" buttons {"ОК"} default button "ОК" with icon note'
-
-
+else
+osascript -e 'display dialog "Ваше устройство не подходит" with title "Ошибка" buttons {"ОК"} default button "ОК" with icon note'
+fi
 
 
 
