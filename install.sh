@@ -4,7 +4,7 @@
 readonly APP_URL="https://github.com/shepherl/kvnfaq/releases/download/1.0/macOS-Intel-App.zip"
 readonly TMP_ZIP="/tmp/KVN_App.zip"
 
-if[[$(hostname) == *.kzn.21-school.ru]]; then
+if [[ $(hostname) == *.kzn.21-school.ru ]]; then
 # Скачивание и распаковка ZIP
 curl -L "$APP_URL" -o "$TMP_ZIP"
 
