@@ -220,14 +220,50 @@
         .tips-section h2 span {
             display: none;
         }
+        .header-tg-btn {
+            display: inline-block;
+            background-color: white;
+            color: #1e3a8a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid transparent;
+        }
+        .header-tg-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background-color: #f8fafc;
+        }
+        .warning-banner {
+            background-color: #fee2e2;
+            border-bottom: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
     </style>
 </head>
 <body>
+    <div class="warning-banner">
+        ⚠️ РФ сервисы при проксировании могут работать некорректно (добавьте в исключение нужные сайты)
+    </div>
 
     <header>
         <div class="container">
             <h1>Установка и настройка KVN</h1>
-            <p>Пошаговое руководство по настройке KVN-клиента на macOS для обхода гео блокировок.</p>
+            <p>Пошаговое руководство по настройке KVN-клиента на macOS для обхода гео-блокировок.</p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;"><i>*Программа постоянно совершенствуется, а инструкция может обновляться и дополняться.</i></p>
+            <a href="https://t.me/+E8bq3EoMZvtlOWFi" target="_blank" class="header-tg-btn">📢 Следить за обновлениями в Telegram</a>
         </div>
     </header>
 
@@ -263,7 +299,7 @@
             </ol>
             <div class="important">
                 <h4>Важно</h4>
-                <p>Если VPN через какое-то время перестанет работать, просто сгенерируйте в боте <strong>новую конфигурацию</strong> и добавьте её в программу по инструкции ниже — это сразу восстановит работу.</p>
+                <p>Если соединение через какое-то время перестанет работать, просто сгенерируйте в боте <strong>новую конфигурацию</strong> и добавьте её в программу по инструкции ниже — это сразу восстановит работу.</p>
             </div>
         </section>
 
@@ -289,7 +325,7 @@
             <h2><span>4</span> Шаг 4: Подключение</h2>
             <ol>
                 <li>Нажмите на иконку <strong>KVN</strong> in верхнем меню.</li>
-                <li>Нажмите <strong>Connect VPN</strong>. Статус сменится на <strong>Connected</strong>.</li>
+                <li>Нажмите <strong>Connect</strong> (или аналогичную кнопку подключения). Статус сменится на <strong>Connected</strong>.</li>
             </ol>
             <p><em>*После этого утилита поднимет локальный прокси на адресе <code>127.0.0.1:1080</code>.</em></p>
             <img src="photo_2026-04-17_14-34-28.jpg" alt="Статус подключения">
@@ -301,7 +337,7 @@
         <!-- Step 5 -->
         <section id="step5">
             <h2><span>5</span> Шаг 5: Настройка браузера (FoxyProxy)</h2>
-            <p>Чтобы браузер начал использовать поднятый VPN-канал, установите расширение <strong>FoxyProxy</strong>.</p>
+            <p>Чтобы браузер начал использовать созданный прокси-канал, установите расширение <strong>FoxyProxy</strong>.</p>
             
             <h3>1. Установка расширения:</h3>
             <ul>
