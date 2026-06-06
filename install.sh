@@ -29,6 +29,9 @@ rm "$TMP_ZIP" "$DMG_PATH"
 # Вывод KVN с карантина 
 xattr -cr ~/Desktop/KVN.app
 
+# Перечитываем иконку приложения
+touch ~/Desktop/KVN.app
+
 #Вызов окна с результатом
 osascript -e 'display dialog "Установка KVN успешно завершена! KVN на рабочем столе" with title "Установщик" buttons {"ОК"} default button "ОК" with icon note'
 else
