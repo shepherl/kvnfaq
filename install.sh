@@ -3,7 +3,7 @@
 # Константы
 readonly APP_URL="https://github.com/shepherl/kvnfaq/releases/download/1.1/macOS-Intel-App.zip"
 readonly TMP_ZIP="/tmp/KVN_App.zip"
-readonly REQUIRED_SPACE_KB=30720000000 # 300 МБ
+readonly REQUIRED_SPACE_KB=307200 # 300 МБ
 
 # Функция установки
 install_app() {
