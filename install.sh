@@ -4,7 +4,7 @@
 readonly APP_URL="https://github.com/shepherl/kvnfaq/releases/download/1.1/macOS-Intel-App.zip"
 readonly TMP_ZIP="/tmp/KVN_App.zip"
 # 300 МБ * 1024 = 307200 КБ
-readonly REQUIRED_SPACE_KB=307200
+readonly REQUIRED_SPACE_KB=102400
 
 # 1. Проверка свободного места
 free_space_kb=$(df -Pk ~ | awk 'NR==2 {print $4}')
