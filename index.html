@@ -386,7 +386,7 @@
         <!-- Step 2 -->
         <section id="step2">
             <h2><span>2</span> Шаг 2: Где взять файл конфигурации?</h2>
-            <p>Для работы программы требуется файл настроек. <strong>Один файл конфигурации уже лежит в папке по <a href="https://drive.google.com/drive/folders/1TeZsVlXY0kWnJVSoVWpEF7k5mTAZmqma?usp=drive_link" target="_blank">ссылке</a>, но он может оказаться не рабочим.</strong> Поэтому лучше получить свежий файл бесплатно через Telegram-бота:</p>
+            <p>Для работы программы требуется файл настроек. <strong>Один файл конфигурации уже лежит в папке по <a href="https://drive.google.com/drive/folders/1TeZsVlXY0kWnJVSoVWpEF7k5mTAZmqma?usp=drive_link" target="_blank" style="color: #60a5fa; text-decoration: underline;">ссылке</a>, но он может оказаться не рабочим.</strong> Поэтому лучше получить свежий файл бесплатно через Telegram-бота:</p>
             <ol>
                 <li>Перейдите в бот:<br>
                     <a href="https://t.me/warp_generator_bot" target="_blank" class="tg-bot-btn">
@@ -459,47 +459,76 @@
                 </a>
             </div>
 
-            <h3>2. Настройка подключения:</h3>
+            <h3>2. Импорт готовых настроек (рекомендуется):</h3>
             <ol>
-                <li>Нажмите на иконку <strong>FoxyProxy</strong> в панели расширений браузера и выберите <strong>Options</strong> (Настройки).</li>
-            </ol>
-            <img src="photo_2026-04-17_14-59-55.jpg" alt="Меню FoxyProxy">
-            <p class="image-caption">Меню FoxyProxy</p>
-            <img src="photo_2026-04-17_14-52-33.jpg" alt="Открыть настройки FoxyProxy">
-            <p class="image-caption">Открыть настройки FoxyProxy</p>
-
-            <ol start="2">
-                <li>Нажмите кнопку <strong>Add</strong> (Добавить новый прокси).</li>
-            </ol>
-            <img src="photo_2026-04-17_14-52-37.jpg" alt="Добавление прокси">
-            <p class="image-caption">Добавление прокси</p>
-
-            <ol start="3">
-                <li>Введите следующие данные:
-                    <ul>
-                        <li><strong>Proxy Type</strong>: Выберите <strong>SOCKS5</strong> из списка.</li>
-                        <li><strong>Proxy IP address or DNS name</strong>: <code>127.0.0.1</code></li>
-                        <li><strong>Port</strong>: <code>1080</code></li>
-                    </ul>
+                <li>Скачайте готовый файл настроек:
+                    <br>
+                    <a href="#" onclick="event.preventDefault(); downloadFoxyProxy();" class="btn" style="margin-top: 0.5rem; margin-bottom: 1rem; display: inline-flex; align-items: center;">
+                        <i class="fa-solid fa-download" style="margin-right: 8px;"></i>
+                        Скачать FoxyProxy.json
+                    </a>
                 </li>
-            </ol>
-            <img src="photo_2026-04-17_14-52-45.jpg" alt="Выбор типа SOCKS5">
-            <p class="image-caption">Выбор типа SOCKS5</p>
-            <img src="photo_2026-04-17_15-03-19.jpg" alt="Заполненные настройки">
-            <p class="image-caption">Заполненные настройки</p>
-
-            <ol start="4">
-                <li>Нажмите <strong>Save</strong> (Сохранить).</li>
-                <li><strong>Настройка исключений (Global Exclude):</strong> Чтобы внутренние сайты (например, проекты School 21) открывались напрямую, перейдите во вкладку <strong>Options</strong> в верхнем меню расширения, пролистайте страницу вниз до поля <strong>Global Exclude</strong>, впишите туда <code>*.21-school.ru</code> и нажмите <strong>Save</strong> в самом низу.
-                    <img src="photo_2026-04-18_15-39-16.jpg" alt="Настройка Global Exclude">
+                <li>Нажмите на иконку <strong>FoxyProxy</strong> в панели расширений браузера и выберите <strong>Options</strong> (Настройки).
+                    <img src="photo_2026-04-17_14-59-55.jpg" alt="Меню FoxyProxy" style="margin-top: 1rem;">
+                    <p class="image-caption">Меню FoxyProxy</p>
+                </li>
+                <li>В открывшемся окне настроек нажмите кнопку <strong>Import</strong> и выберите скачанный файл.
+                    <img src="photo_2026-04-18_15-39-16.jpg" alt="Настройка Global Exclude" style="margin-top: 1rem;">
                     <p class="image-caption">Настройка исключений во вкладке Options</p>
-                    <div class="important" style="margin: 1rem 0;">
-                        <p><em>Если этого не сделать, при попытке зайти на платформу вы увидите ошибку "Forbidden", так как сайт заблокирует вход через KVN:</em></p>
-                        <img src="photo_2026-04-18_15-45-37.jpg" alt="Ошибка Forbidden при включенном KVN на платформе School 21">
-                        <p class="image-caption">Пример ошибки, если не добавить *.21-school.ru в исключения</p>
-                    </div>
                 </li>
-                <li>Теперь снова нажмите на иконку расширения в браузере и выберите созданный профиль <code>127.0.0.1:1080</code>.</li>
+            </ol>
+
+            <details style="margin-top: 1.5rem; margin-bottom: 2.5rem; background-color: var(--code-bg); padding: 1rem 1.5rem; border-radius: 8px; border: 1px solid var(--border);">
+                <summary style="cursor: pointer; user-select: none; font-weight: 600; color: var(--text-light); font-size: 1.05rem;">
+                    Ручная настройка (развернуть, если не сработал импорт)
+                </summary>
+                <div style="padding-top: 1.5rem; margin-top: 1rem; border-top: 1px solid var(--border);">
+                    <ol>
+                        <li>Нажмите на иконку <strong>FoxyProxy</strong> в панели расширений браузера и выберите <strong>Options</strong> (Настройки).</li>
+                    </ol>
+                    <img src="photo_2026-04-17_14-59-55.jpg" alt="Меню FoxyProxy">
+                    <p class="image-caption">Меню FoxyProxy</p>
+                    <img src="photo_2026-04-17_14-52-33.jpg" alt="Открыть настройки FoxyProxy">
+                    <p class="image-caption">Открыть настройки FoxyProxy</p>
+
+                    <ol start="2">
+                        <li>Нажмите кнопку <strong>Add</strong> (Добавить новый прокси).</li>
+                    </ol>
+                    <img src="photo_2026-04-17_14-52-37.jpg" alt="Добавление прокси">
+                    <p class="image-caption">Добавление прокси</p>
+
+                    <ol start="3">
+                        <li>Введите следующие данные:
+                            <ul>
+                                <li><strong>Proxy Type</strong>: Выберите <strong>SOCKS5</strong> из списка.</li>
+                                <li><strong>Proxy IP address or DNS name</strong>: <code>127.0.0.1</code></li>
+                                <li><strong>Port</strong>: <code>1080</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <img src="photo_2026-04-17_14-52-45.jpg" alt="Выбор типа SOCKS5">
+                    <p class="image-caption">Выбор типа SOCKS5</p>
+                    <img src="photo_2026-04-17_15-03-19.jpg" alt="Заполненные настройки">
+                    <p class="image-caption">Заполненные настройки</p>
+
+                    <ol start="4">
+                        <li>Нажмите <strong>Save</strong> (Сохранить).</li>
+                        <li><strong>Настройка исключений (Global Exclude):</strong> Чтобы внутренние сайты (например, проекты School 21) открывались напрямую, перейдите во вкладку <strong>Options</strong> в верхнем меню расширения, пролистайте страницу вниз до поля <strong>Global Exclude</strong>, впишите туда <code>*.21-school.ru</code> и нажмите <strong>Save</strong> в самом низу.
+                            <img src="photo_2026-04-18_15-39-16.jpg" alt="Настройка Global Exclude">
+                            <p class="image-caption">Настройка исключений во вкладке Options</p>
+                            <div class="important" style="margin: 1rem 0;">
+                                <p><em>Если этого не сделать, при попытке зайти на платформу вы увидите ошибку "Forbidden", так как сайт заблокирует вход через KVN:</em></p>
+                                <img src="photo_2026-04-18_15-45-37.jpg" alt="Ошибка Forbidden при включенном KVN на платформе School 21">
+                                <p class="image-caption">Пример ошибки, если не добавить *.21-school.ru в исключения</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </details>
+
+            <h3>3. Активация прокси:</h3>
+            <ol>
+                <li>Нажмите на иконку расширения в браузере и выберите профиль <code>127.0.0.1:1080</code> (он будет создан после импорта или ручной настройки).</li>
             </ol>
             <img src="photo_2026-04-17_14-52-51.jpg" alt="Активация прокси">
             <p class="image-caption">Активация прокси</p>
@@ -545,6 +574,56 @@
                 setTimeout(() => btn.innerText = 'Копировать', 2000);
             });
         }
+    </script>
+    <script>
+    function downloadFoxyProxy() {
+        const data = {
+          "mode": "disable",
+          "sync": false,
+          "autoBackup": false,
+          "passthrough": ".21-school.ru",
+          "theme": "",
+          "container": {},
+          "commands": {
+            "setProxy": "",
+            "setTabProxy": "",
+            "includeHost": "",
+            "excludeHost": ""
+          },
+          "data": [
+            {
+              "active": true,
+              "title": "",
+              "type": "socks5",
+              "hostname": "127.0.0.1",
+              "port": "1080",
+              "username": "",
+              "password": "",
+              "cc": "",
+              "city": "",
+              "color": "#d3d3d3",
+              "pac": "",
+              "pacString": "",
+              "proxyDNS": true,
+              "include": [],
+              "exclude": [],
+              "tabProxy": []
+            }
+          ]
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'FoxyProxy.json';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }, 100);
+    }
     </script>
 </body>
 </html>
